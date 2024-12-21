@@ -14,11 +14,20 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-/*
-model Users{
-  
+
+model User {
+  id         Int         @id @default(autoincrement())
+  name       String      @db.VarChar(191)
+  email      String      @unique
+  provider   String
+  oauth_id   String
+  image      String?
+  created_at DateTime    @default(now())
+
+  @@map("users")
 }
 
+/*
 model ChatGroup{
   
 }
